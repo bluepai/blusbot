@@ -76,9 +76,19 @@ var CoinSides = [
   "Tails",
 ];
 
+//Roll a DICE
+var DiceNumbers = [
+  "1",
+  "2",
+  "3",
+  "4",
+  "5",
+  "6",
+];
+
 //COMMANDS
 const prefix = "/";
-const version = "1.0.1"
+const version = "1.0.2"
 
 //Apply the Settings
 client.login(Token); //Log in on the bot client.
@@ -135,11 +145,11 @@ client.on('message', function(message) { //This command runs every time when a m
           break;
 
           case "DICE":
-          message.reply("You roll a dice... The dice landed on side " + Math.floor(Math.random()) * 6) + "!";
+          message.reply("You roll a dice... The dice landed on side " + DiceNumbers[Math.floor(Math.random()) * DiceNumbers.length] + "!");
           break;
 
           case "COIN":
-          message.reply("You flip a coin... **" + CoinSides[Math.floor(Math.random() * CoinSides.length)]) + "**!";
+          message.reply("You flip a coin... " + CoinSides[Math.floor(Math.random()) * CoinSides.length] + "!");
           break;
 
 
