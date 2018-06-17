@@ -135,11 +135,11 @@ client.on('message', function(message) { //This command runs every time when a m
           break;
 
           case "DICE":
-          message.reply("You roll a dice... The dice landed on side **" + Math.floor(Math.random()) * 6) + "**!";
+          message.reply("You roll a dice... The dice landed on side " + Math.floor(Math.random()) * 6) + "!";
           break;
 
           case "COIN":
-          message.reply("You flip a coin... **" + CoinSides[Math.floor(Math.random()) * CoinSides.length)]) + "**!";
+          message.reply("You flip a coin... **" + CoinSides[Math.floor(Math.random() * CoinSides.length)]) + "**!";
           break;
 
 
