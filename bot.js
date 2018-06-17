@@ -70,67 +70,9 @@ var fortunes = [
   "You got it!",
 ];
 
-//Flip a Coin
-var CoinSides = [
-  "Heads",
-  "Tails",
-  "Heads",
-  "Tails",
-  "Heads",
-  "Tails",
-  "Heads",
-  "Tails",
-  "Heads",
-  "Tails",
-  "Heads",
-  "Tails",
-  "Heads",
-  "Tails",
-];
-
-//Roll a DICE
-var DiceNumbers = [
-  "1",
-  "2",
-  "3",
-  "4",
-  "5",
-  "6",
-  "1",
-  "2",
-  "3",
-  "4",
-  "5",
-  "6",
-  "1",
-  "2",
-  "3",
-  "4",
-  "5",
-  "6",
-  "1",
-  "2",
-  "3",
-  "4",
-  "5",
-  "6",
-  "1",
-  "2",
-  "3",
-  "4",
-  "5",
-  "6",
-  "1",
-  "2",
-  "3",
-  "4",
-  "5",
-  "6",
-];
-
 //COMMANDS
 const prefix = "/";
-const version = "1.0.3"
+const version = "1.0.4"
 
 //Apply the Settings
 client.login(Token); //Log in on the bot client.
@@ -185,15 +127,6 @@ client.on('message', function(message) { //This command runs every time when a m
             message.channel.send("Oof, that's not how to 8 ball... Try: /8ball <question>");
           }
           break;
-
-          case "DICE":
-          message.reply("You roll a dice... The dice landed on side " + DiceNumbers[Math.floor(Math.random()) * DiceNumbers.length] + "!");
-          break;
-
-          case "COIN":
-          message.reply("You flip a coin... " + CoinSides[Math.floor(Math.random()) * CoinSides.length] + "!");
-          break;
-
 
         ///////////////////
         ///INFO COMMANDS///
