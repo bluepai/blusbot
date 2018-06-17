@@ -74,6 +74,18 @@ var fortunes = [
 var CoinSides = [
   "Heads",
   "Tails",
+  "Heads",
+  "Tails",
+  "Heads",
+  "Tails",
+  "Heads",
+  "Tails",
+  "Heads",
+  "Tails",
+  "Heads",
+  "Tails",
+  "Heads",
+  "Tails",
 ];
 
 //Roll a DICE
@@ -84,11 +96,41 @@ var DiceNumbers = [
   "4",
   "5",
   "6",
+  "1",
+  "2",
+  "3",
+  "4",
+  "5",
+  "6",
+  "1",
+  "2",
+  "3",
+  "4",
+  "5",
+  "6",
+  "1",
+  "2",
+  "3",
+  "4",
+  "5",
+  "6",
+  "1",
+  "2",
+  "3",
+  "4",
+  "5",
+  "6",
+  "1",
+  "2",
+  "3",
+  "4",
+  "5",
+  "6",
 ];
 
 //COMMANDS
 const prefix = "/";
-const version = "1.0.2"
+const version = "1.0.3"
 
 //Apply the Settings
 client.login(Token); //Log in on the bot client.
