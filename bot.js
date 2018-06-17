@@ -70,9 +70,15 @@ var fortunes = [
   "You got it!",
 ];
 
+//Flip a Coin
+var CoinSides = [
+  "Heads",
+  "Tails",
+];
+
 //COMMANDS
 const prefix = "/";
-const version = "1.0.0"
+const version = "1.0.1"
 
 //Apply the Settings
 client.login(Token); //Log in on the bot client.
@@ -128,6 +134,15 @@ client.on('message', function(message) { //This command runs every time when a m
           }
           break;
 
+          case "ROLL A DICE":
+          message.reply("You roll a dice... The dice landed on side **" + Math.floor(Math.random()) * 6) + "**!";
+          break;
+
+          case "FLIP A COIN":
+          message.reply("You flip a coin... **" + CoinSides[Math.floor(Math.random()) * CoinSides.length)]) + "**!";
+          break;
+
+
         ///////////////////
         ///INFO COMMANDS///
         ///////////////////
@@ -136,7 +151,7 @@ client.on('message', function(message) { //This command runs every time when a m
             message.channel.send({embed: {
             color: 0xf50107,
             title: "blu's bot",
-            description: "(Version " + version + ")",
+            description: "Version " + version
             }});
             break;
 
