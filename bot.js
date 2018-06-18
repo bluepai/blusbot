@@ -77,7 +77,7 @@ var fortunes = [ //Define a list of messages to respond with if the bot is asked
 
 //COMMANDS
 const prefix = "/";
-const version = "1.1.0"
+const version = "1.1.1"
 
 //Apply the Settings
 client.login(Token); //Log in on the bot client.
