@@ -8,7 +8,7 @@ const client = new Discord.Client(); //Reference the Discord Client.
 var fs = require('fs'); //Reference the FS package, pre-installed with json.
 
 //Bot Profile
-var Status = 'spongebob 24/7 livestreams'; //What the bot is "doing".
+var Status = 'yanderedev rant videos'; //What the bot is "doing".
 var StatusType = 3; //Current status type = 3. (Watching). (Types: 1 = playing, 2 = streaming, 3 = watching.)
 var ProfileState = 'dnd'; //The current profile state is Do Not Disturb.
 var Token = 'NDQ5MjQ3Mzg0MTgzMjQyNzUy.Deh8Sg.HqZ9X8p8sp4611UdS8gE-52NceQ';
@@ -72,7 +72,7 @@ var fortunes = [
 
 //COMMANDS
 const prefix = "/";
-const version = "1.0.0"
+const version = "1.1.3"
 
 //Apply the Settings
 client.login(Token); //Log in on the bot client.
@@ -115,6 +115,19 @@ client.on('message', function(message) { //This command runs every time when a m
         ///FUN COMMANDS//
         /////////////////
 
+        case "rate":
+          if(args[1]) {
+            message.channel.send({embed: {
+                    color: 0xf50107,
+                    title: "Hm...",
+                    description: "I rate it a " + (Math.floor(Math.random() * 10)) + "/10!",
+                    }});
+          }
+          else {
+            message.channel.send("I can't rate ***u n d e f i n e d***...");
+          }
+          break;
+
         case "8BALL":
           if(args[1]) {
             message.channel.send({embed: {
@@ -140,8 +153,12 @@ client.on('message', function(message) { //This command runs every time when a m
             }});
             break;
 
-        case "STATS": //This part of the script will run if the message contains this message.
-          message.reply("your stats: \nMessages Sent: **" + userData[sender.id].MessagesSent + "**\nMoney: **" + userData[sender.id].Money + "**"); //Reply to the user running the command with the following message.
+        case "PROFILE": //This part of the script will run if the message contains this message.
+          message.channel.send({embed: {
+                  color: 0xf50107,
+                  title: sender + "'s Profile",
+                  description: "Messages Sent: **" + userData[sender.id].MessagesSent + "\nMoney: **" + userData[sender.id].Money + "88",
+                  }});
           break;
 
         ///////////////////
