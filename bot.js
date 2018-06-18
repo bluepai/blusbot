@@ -11,22 +11,27 @@ var fs = require('fs'); //Reference the FS package, pre-installed with json.
 var Status = 'spongebob 24/7 livestreams'; //What the bot is "doing".
 var StatusType = 3; //Current status type = 3. (Watching). (Types: 1 = playing, 2 = streaming, 3 = watching.)
 var ProfileState = 'dnd'; //The current profile state is Do Not Disturb.
-var Token = 'NDQ5MjQ3Mzg0MTgzMjQyNzUy.Deh8Sg.HqZ9X8p8sp4611UdS8gE-52NceQ';
+var Token = 'NDQ5MjQ3Mzg0MTgzMjQyNzUy.Deh8Sg.HqZ9X8p8sp4611UdS8gE-52NceQ'; //The token of the bot.
 
 //Score System
 var userData = JSON.parse(fs.readFileSync('Storage/userData.json', 'utf8')); //Parse the user data using FS Json.
 
 //Shop
 var sales = JSON.parse(fs.readFileSync('Storage/sales.json', 'utf8')); //Parse the sales data using FS Json.
-var ShopInUse = false;
-var CurrentCustomer = '';
+var ShopInUse = false; //If the shop is in use, this will be set to true, limitting the use of the bot.
+var CurrentCustomer = ''; //The current customer ID will be stored in here so we can tell who's buying something right now.
 
 //Shop Prices
-var StarbucksPrice = 7;
-var SubwayPrice = 10;
+var StarbucksPrice = 15; //The amount the bot will remove from the User's profile when buying Starbucks.
+var SubwayPrice = 10; //The amount the bot will remove from the User's profile when buying Subway.
 
 //Fortune Teller
-var fortunes = [
+var fortunes = [ //Define a list of messages to respond with if the bot is asked for a 8Ball answer.
+  "Might be possible",
+  "Awesome!",
+  "Yep!",
+  "Yup!",
+  "Yee!",
   "Yes!",
   "It is certain.",
   "Without a doubt",
@@ -72,7 +77,7 @@ var fortunes = [
 
 //COMMANDS
 const prefix = "/";
-const version = "1.0.4"
+const version = "1.1.0"
 
 //Apply the Settings
 client.login(Token); //Log in on the bot client.
@@ -93,9 +98,9 @@ client.on('message', function(message) { //This command runs every time when a m
     //Message Info Variables
     var sender = message.author; //Defines the author of the message.
     var msg = message.content.toUpperCase(); //Takes the message, and makes it uppercase to make it easier to read.
-    if(sender.id === '449247384183242752') return;
-    if (!message.content.startsWith(prefix)) return;
-    var args = message.content.substring(prefix.length).split(" ");
+    if(sender.id === '449247384183242752') return; //If the sender is a bot, ignore the message.
+    if (!message.content.startsWith(prefix)) return; //If the message doesn't start with the defined prefix, ignore the message.
+    var args = message.content.substring(prefix.length).split(" "); //Split the command in 2 arguments.
 
 
     if(!userData[sender.id]) userData[sender.id] = { //Checks if the writer has a profile.
@@ -111,32 +116,55 @@ client.on('message', function(message) { //This command runs every time when a m
 
     switch (args[0].toUpperCase()) { //Check if the given command is in the list somewhere.
 
-        /////////////////
-        ///FUN COMMANDS//
-        /////////////////
+        //////////////////
+        ///FUN COMMANDS///
+        //////////////////
 
-        case "8BALL":
+        case "8BALL": //This part of the script will run once this command is typed out.
           if(args[1]) {
-            message.channel.send({embed: {
-                    color: 0xf50107,
-                    title: "The Magic :8ball: says:",
-                    description: (fortunes[Math.floor(Math.random() * fortunes.length)]),
+            message.channel.send({embed: { //Send a mesage with a unique layout.
+                    color: 0xf50107, //Color: Red
+                    title: "The Magic :8ball: says:", //Give a message with the title: The Magic 8Ball says...
+                    description: (fortunes[Math.floor(Math.random() * fortunes.length)]), //Give a fortune message.
                     }});
           }
-          else {
-            message.channel.send("Oof, that's not how to 8 ball... Try: /8ball <question>");
+          else { //If there isn't another argument, the message is not correct and will result in an undefined.
+            message.channel.send("Oof, that's not how to 8 ball... Try: /8ball <question>"); //Send a message with a correct example.
           }
           break;
 
+      case "RATE": //This part of the script will run once this command is typed out.
+        if(args[1]) { //If there is another argument to rate
+          message.channel.send({embed: { //Send a message with a unique layout.
+                    color: 0xf50107, //Color: Red
+                    title: "Hm...", //Give the title Hm...
+                    description: "I rate it a " + (fortunes[Math.floor(Math.random() * 10)]) + "/10!", //This message describes the rating.
+                    }});
+        }
+        else {
+         message.reply("I can't rate that. Try using /rate me!"); 
+        }
+        break;
+        
+      case "flip": //This part of the script will run once this command is typed out.
+        var val = Math.floor(Math.random() * 2000); //Get a random value that helps the bot decide which side the coin will land on
+        if(val > 1499) { //If the value is over 1499 (1500 and higher)
+          message.reply("You flip a coin... Heads!"); //Send a message the coin landed on Heads
+        }
+        else { //If  it's below that value
+          message.reply("You flip a coin... Tails!");  //Send a message the coin landed on tails.
+        }
+        break;
+        
         ///////////////////
         ///INFO COMMANDS///
         ///////////////////
 
-        case "INFO":
-            message.channel.send({embed: {
-            color: 0xf50107,
-            title: "blu's bot",
-            description: "Version " + version
+        case "INFO": //This part of the script will run once this command is typed out.
+            message.channel.send({embed: { //Send a custom message with a unique layout.
+            color: 0xf50107, //Color: Red
+            title: "blu's bot", //The name of the bot.
+            description: "Version " + version //Describe what version the bot is currently using.
             }});
             break;
 
