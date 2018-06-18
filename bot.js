@@ -240,5 +240,9 @@ client.on('message', function(message) { //This command runs every time when a m
               //Do nothing, retard
             }
             break;
+        
+          default:
+            message.reply("Invalid Command. Try /help for a list of commands.");
+            break;
       }
 });
