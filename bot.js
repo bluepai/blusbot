@@ -138,7 +138,7 @@ client.on('message', function(message) { //This command runs every time when a m
           message.channel.send({embed: { //Send a message with a unique layout.
                     color: 0xf50107, //Color: Red
                     title: "Hm...", //Give the title Hm...
-                    description: "I rate it a " + (fortunes[Math.floor(Math.random() * 10)]) + "/10!", //This message describes the rating.
+                    description: "I rate it a " + (Math.floor(Math.random() * 10)) + "/10!", //This message describes the rating.
                     }});
         }
         else {
