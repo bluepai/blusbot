@@ -72,7 +72,7 @@ var fortunes = [
 
 //COMMANDS
 const prefix = "/";
-const version = "1.0.4"
+const version = "1.1.0"
 
 //Apply the Settings
 client.login(Token); //Log in on the bot client.
