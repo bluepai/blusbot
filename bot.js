@@ -72,7 +72,7 @@ var fortunes = [
 
 //COMMANDS
 const prefix = "/";
-const version = "1.1.3"
+const version = "1.1.4"
 
 //Apply the Settings
 client.login(Token); //Log in on the bot client.
@@ -111,11 +111,36 @@ client.on('message', function(message) { //This command runs every time when a m
 
     switch (args[0].toUpperCase()) { //Check if the given command is in the list somewhere.
 
+        case "HELP":
+        message.channel.send({embed: {
+                color: 0x00BCFF,
+                title: "List of Commands",
+                description: "These are the commands. What else do you expect this to say?!",
+                fields: [{
+                    name: "Main Commands",
+                    value: "`/profile` Show your profile stats."
+                  },
+                  {
+                    name: "Fun Commands",
+                    value: "`/shop` Go to your local supermarket and buy stuff you'll never use\n`/8ball` ask the magic :8ball: a question.\n`/rate` Ask me to rate your stuff because why not"
+                  },
+                  {
+                    name: "Misc Commands",
+                    value: "`/info` Shows bot info.\n`/help` Shows a list of commands."
+                  },
+              ],
+              footer: {
+                icon_url: "https://cdn.discordapp.com/avatars/427214101589131264/5b95b5b151127cee95416d9827258337.png",
+                text: "Made by bluepai#9307"
+              }
+            }});
+        break;
+
         /////////////////
         ///FUN COMMANDS//
         /////////////////
 
-        case "rate":
+        case "RATE":
           if(args[1]) {
             message.channel.send({embed: {
                     color: 0xf50107,
@@ -147,17 +172,29 @@ client.on('message', function(message) { //This command runs every time when a m
 
         case "INFO":
             message.channel.send({embed: {
-            color: 0xf50107,
+            color: 0x00BCFF,
             title: "blu's bot",
-            description: "(Version " + version + ")",
+            fields: [{
+                  name: "Version",
+                  value: version,
+                }
+            ],
+            timestamp: new Date(),
+            footer: {
+              icon_url: "https://cdn.discordapp.com/avatars/427214101589131264/5b95b5b151127cee95416d9827258337.png",
+              text: "Made by bluepai#9307"
+            }
             }});
             break;
 
         case "PROFILE": //This part of the script will run if the message contains this message.
           message.channel.send({embed: {
-                  color: 0xf50107,
-                  title: sender + "'s Profile",
-                  description: "Messages Sent: **" + userData[sender.id].MessagesSent + "\nMoney: **" + userData[sender.id].Money + "88",
+                  color: 0x00BCFF,
+                  author: {
+                    name: sender.username + "'s Profile",
+                    icon_url: sender.avatarURL
+                  },
+                  description: "Messages Sent: **" + userData[sender.id].MessagesSent + "**\nMoney: **" + userData[sender.id].Money + "**",
                   }});
           break;
 
@@ -228,6 +265,10 @@ client.on('message', function(message) { //This command runs every time when a m
             else {
               //Do nothing, retard
             }
+            break;
+
+            default:
+            message.reply("Invalid command. Try '/help' for a list of commands.");
             break;
       }
 });
