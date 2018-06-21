@@ -6,6 +6,8 @@
 const Discord = require("discord.js"); //Import the Discord API, discord.js.
 const client = new Discord.Client(); //Reference the Discord Client.
 var fs = require('fs'); //Reference the FS package, pre-installed with json.
+const prefix = "/";
+const version = "1.1.5"
 
 //Bot Profile
 var Status = 'yanderedev rant videos'; //What the bot is "doing".
@@ -70,10 +72,6 @@ var fortunes = [
   "You got it!",
 ];
 
-//COMMANDS
-const prefix = "/";
-const version = "1.1.4"
-
 //Apply the Settings
 client.login(Token); //Log in on the bot client.
 
@@ -111,6 +109,35 @@ client.on('message', function(message) { //This command runs every time when a m
 
     switch (args[0].toUpperCase()) { //Check if the given command is in the list somewhere.
 
+        case "CHANGELOG":
+        message.channel.send({embed: {
+                color: 0x00BCFF,
+                author: {
+                  name: "Change Log",
+                  icon_url: client.user.avatarURL
+                },
+                title: "Changes in " + version,
+                fields: [{
+                    name: "New Features",
+                    value: "Added a Changelog Command."
+                  },
+                  {
+                    name: "Bug Fixes",
+                    value: "No Bug Fixes."
+                  },
+                  {
+                    name: "Improvements",
+                    value: "Made the Embed Messages nicer to the eyes."
+                  },
+              ],
+              timestamp: new Date(),
+              footer: {
+                icon_url: "https://cdn.discordapp.com/avatars/427214101589131264/5b95b5b151127cee95416d9827258337.png",
+                text: "Made by bluepai#9307"
+              }
+            }});
+        break;
+
         case "HELP":
         message.channel.send({embed: {
                 color: 0x00BCFF,
@@ -126,7 +153,7 @@ client.on('message', function(message) { //This command runs every time when a m
                   },
                   {
                     name: "Misc Commands",
-                    value: "`/info` Shows bot info.\n`/help` Shows a list of commands."
+                    value: "`/info` Shows bot info.\n`/help` Shows a list of commands.\n`/changelog` Show the changes of the latest update."
                   },
               ],
               footer: {
@@ -143,26 +170,26 @@ client.on('message', function(message) { //This command runs every time when a m
         case "RATE":
           if(args[1]) {
             message.channel.send({embed: {
-                    color: 0xf50107,
+                    color: 0x00BCFF,
                     title: "Hm...",
                     description: "I rate it a " + (Math.floor(Math.random() * 10)) + "/10!",
                     }});
           }
           else {
-            message.channel.send("I can't rate ***u n d e f i n e d***...");
+            message.channel.send("I dont have anything to rate for you. Try '/rate me'!");
           }
           break;
 
         case "8BALL":
           if(args[1]) {
             message.channel.send({embed: {
-                    color: 0xf50107,
+                    color: 0x00BCFF,
                     title: "The Magic :8ball: says:",
                     description: (fortunes[Math.floor(Math.random() * fortunes.length)]),
                     }});
           }
           else {
-            message.channel.send("Oof, that's not how to 8 ball... Try: /8ball <question>");
+            message.channel.send("I dont have any questions to answer for you. Try '/8ball Do you like me?'!");
           }
           break;
 
