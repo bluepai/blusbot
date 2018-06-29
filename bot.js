@@ -10,15 +10,12 @@ const prefix = "/";
 const version = "1.2.0"
 
 //Bot Profile
-<<<<<<< HEAD
 var Status = 'blu go insane'; //What the bot is "doing".
 var StatusType = 3; //Current status type = 3. (Watching). (Types: 1 = playing, 2 = streaming, 3 = watching.)
 var ProfileState = 'dnd'; //The current profile state is Do Not Disturb.
-=======
 var Status = 'Yuka Simulator'; //What the bot is "doing".
 var StatusType = 1; //Current status type = 3. (Watching). (Types: 1 = playing, 2 = streaming, 3 = watching.)
 var ProfileState = 'online'; //The current profile state is Online.
->>>>>>> 05e63d2a9c833342836670c697461570d4076a6c
 var Token = 'NDQ5MjQ3Mzg0MTgzMjQyNzUy.Deh8Sg.HqZ9X8p8sp4611UdS8gE-52NceQ';
 
 //Score System
@@ -65,17 +62,14 @@ var fortunes = [
   "Sorry, i don't believe so.",
   "That's not in the cards.",
   "Don't expect so.",
-<<<<<<< HEAD
   "Nope, Sorry.",
   "no ;-;",
-=======
   "no ;-;",
   "I honestly think Yuka Simulator is the best game ever either way.",
   "Of course!",
   "Yep!",
   "Yepperino!",
   "You got it!",
->>>>>>> 05e63d2a9c833342836670c697461570d4076a6c
 ];
 
 //Apply the Settings
