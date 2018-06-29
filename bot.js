@@ -10,9 +10,9 @@ const prefix = "/";
 const version = "1.1.5"
 
 //Bot Profile
-var Status = 'yanderedev rant videos'; //What the bot is "doing".
-var StatusType = 3; //Current status type = 3. (Watching). (Types: 1 = playing, 2 = streaming, 3 = watching.)
-var ProfileState = 'dnd'; //The current profile state is Do Not Disturb.
+var Status = 'Yuka Simulator'; //What the bot is "doing".
+var StatusType = 1; //Current status type = 3. (Watching). (Types: 1 = playing, 2 = streaming, 3 = watching.)
+var ProfileState = 'online'; //The current profile state is Online.
 var Token = 'NDQ5MjQ3Mzg0MTgzMjQyNzUy.Deh8Sg.HqZ9X8p8sp4611UdS8gE-52NceQ';
 
 //Score System
@@ -55,20 +55,11 @@ var fortunes = [
   "Sorry, i don't believe so.",
   "That's not in the cards.",
   "Don't expect so.",
-  "Please no",
-  "Nope, Sorry.",
-  "oof, no",
   "no ;-;",
   "I honestly think Yuka Simulator is the best game ever either way.",
-  "Yesu Desu",
   "Of course!",
   "Yep!",
-  "As sure as the earth is round.",
-  "As sure as the earth is flat.",
   "Yepperino!",
-  "YEEE",
-  "yeeee boiiiiiiiii",
-  "yeee gurrrrrrl",
   "You got it!",
 ];
 
@@ -239,7 +230,7 @@ client.on('message', function(message) { //This command runs every time when a m
           }
           CurrentCustomer = sender.id; //Set the Current Customer to the ID of the sender, so we can't interrupt each other.
           ShopInUse = true; //Set the Shop In Use to true, so no one can use the shop anymore.
-          message.reply("Welcome to the shop of the shops! How can i help you? :3\n\nType **'.starbucks'** to buy some supah hot StarBucks. :coffee:\n\nType **'.subway'** to buy some tasty Subway! :french_bread:");
+          message.reply("Welcome to the shop of the shops! How can i help you? :3\n\nType **'/starbucks'** to buy some supah hot StarBucks. :coffee:\n\nType **'/subway'** to buy some tasty Subway! :french_bread:");
           break;
 
         case "STARBUCKS": //This part of the script will run if the message contains this message.
@@ -292,10 +283,6 @@ client.on('message', function(message) { //This command runs every time when a m
             else {
               //Do nothing, retard
             }
-            break;
-
-            default:
-            message.reply("Invalid command. Try '/help' for a list of commands.");
             break;
       }
 });
