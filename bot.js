@@ -7,10 +7,10 @@ const Discord = require("discord.js"); //Import the Discord API, discord.js.
 const client = new Discord.Client(); //Reference the Discord Client.
 var fs = require('fs'); //Reference the FS package, pre-installed with json.
 const prefix = "/";
-const version = "1.1.5"
+const version = "1.2.0"
 
 //Bot Profile
-var Status = 'yanderedev rant videos'; //What the bot is "doing".
+var Status = 'blu go insane'; //What the bot is "doing".
 var StatusType = 3; //Current status type = 3. (Watching). (Types: 1 = playing, 2 = streaming, 3 = watching.)
 var ProfileState = 'dnd'; //The current profile state is Do Not Disturb.
 var Token = 'NDQ5MjQ3Mzg0MTgzMjQyNzUy.Deh8Sg.HqZ9X8p8sp4611UdS8gE-52NceQ';
@@ -39,37 +39,28 @@ var fortunes = [
   "Take a wild guess...",
   "Concentrate and ask again",
   "Do you think so?",
+  "Of course!",
+  "Yep!",
+  "As sure as the earth is round.",
+  "As sure as the earth is flat.",
+  "Yepperino!",
+  "You got it!",
   "Can't tell you now.",
   "Don't count on it.",
   "No.",
   "My reply is no.",
-  "My sources say no.",
   "Outlook bad...",
   "Very doubtful.",
   "Maybe",
   "hm...i don't know.",
-  "You got me pondering.",
   "I don't think so.",
   "I don't think that's possible.",
   "no...",
   "Sorry, i don't believe so.",
   "That's not in the cards.",
   "Don't expect so.",
-  "Please no",
   "Nope, Sorry.",
-  "oof, no",
   "no ;-;",
-  "I honestly think Yuka Simulator is the best game ever either way.",
-  "Yesu Desu",
-  "Of course!",
-  "Yep!",
-  "As sure as the earth is round.",
-  "As sure as the earth is flat.",
-  "Yepperino!",
-  "YEEE",
-  "yeeee boiiiiiiiii",
-  "yeee gurrrrrrl",
-  "You got it!",
 ];
 
 //Apply the Settings
@@ -230,7 +221,14 @@ client.on('message', function(message) { //This command runs every time when a m
         ///////////////////
 
         case "SALES":
-          message.channel.send("Sales:\nStarBucks Sales: **" + sales.StarbucksSales + "**\nSubway Sales: **" + sales.SubwaySales + "**");
+          message.channel.send({embed: {
+                  color: 0x00BCFF,
+                  author: {
+                    name: "The Shop of the Shops Sales",
+                    icon_url: client.user.avatarURL
+                  },
+                  description: "StarBucks Sales: **" + sales.StarbucksSales + "**\nSubway Sales: **" + sales.SubwaySales + "**",
+                  }});
           break;
 
         case "SHOP": //This part of the script will run if the message contains this message.
