@@ -7,11 +7,11 @@ const Discord = require("discord.js"); //Import the Discord API, discord.js.
 const client = new Discord.Client(); //Reference the Discord Client.
 var fs = require('fs'); //Reference the FS package, pre-installed with json.
 const prefix = "/";
-const version = "1.2.2"
+const version = "1.2.3"
 
 //Bot Profile
 var Status = 'Fortnite'; //What the bot is "doing".
-var StatusType = 2; //Current status type = 1. (Watching). (Types: 1 = playing, 2 = streaming, 3 = watching.)
+var StatusType = 1; //Current status type = 1. (Watching). (Types: 1 = playing, 2 = streaming, 3 = watching.)
 var ProfileState = 'dnd'; //The current profile state is DND.
 var Token = 'NDQ5MjQ3Mzg0MTgzMjQyNzUy.Deh8Sg.HqZ9X8p8sp4611UdS8gE-52NceQ';
 
@@ -128,7 +128,7 @@ client.on('message', function(message) { //This command runs every time when a m
                   },
                   {
                     name: "Bug Fixes",
-                    value: "- Fixed some crashes."
+                    value: "- Fixed some crashes.\n- Fixed some issues regarding the bot programming."
                   },
                   {
                     name: "Improvements",
