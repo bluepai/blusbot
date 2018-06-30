@@ -7,22 +7,19 @@ const Discord = require("discord.js"); //Import the Discord API, discord.js.
 const client = new Discord.Client(); //Reference the Discord Client.
 var fs = require('fs'); //Reference the FS package, pre-installed with json.
 const prefix = "/";
-const version = "1.2.0"
+const version = "1.2.1"
 
 //Bot Profile
-var Status = 'blu go insane'; //What the bot is "doing".
-var StatusType = 3; //Current status type = 3. (Watching). (Types: 1 = playing, 2 = streaming, 3 = watching.)
-var ProfileState = 'dnd'; //The current profile state is Do Not Disturb.
-var Status = 'Yuka Simulator'; //What the bot is "doing".
-var StatusType = 1; //Current status type = 3. (Watching). (Types: 1 = playing, 2 = streaming, 3 = watching.)
-var ProfileState = 'online'; //The current profile state is Online.
+var Status = 'Fortnite'; //What the bot is "doing".
+var StatusType = 1; //Current status type = 1. (Watching). (Types: 1 = playing, 2 = streaming, 3 = watching.)
+var ProfileState = 'dnd'; //The current profile state is DND.
 var Token = 'NDQ5MjQ3Mzg0MTgzMjQyNzUy.Deh8Sg.HqZ9X8p8sp4611UdS8gE-52NceQ';
 
 //Score System
-var userData = JSON.parse(fs.readFileSync('Storage/userData.json', 'utf8')); //Parse the user data using FS Json.
+var userData = JSON.parse(fs.readFileSync('Storage/JSON/userData.json', 'utf8')); //Parse the user data using FS Json.
 
 //Shop
-var sales = JSON.parse(fs.readFileSync('Storage/sales.json', 'utf8')); //Parse the sales data using FS Json.
+var sales = JSON.parse(fs.readFileSync('Storage/JSON/sales.json', 'utf8')); //Parse the sales data using FS Json.
 var ShopInUse = false;
 var CurrentCustomer = '';
 
@@ -64,7 +61,6 @@ var fortunes = [
   "Don't expect so.",
   "Nope, Sorry.",
   "no ;-;",
-  "no ;-;",
   "I honestly think Yuka Simulator is the best game ever either way.",
   "Of course!",
   "Yep!",
@@ -95,6 +91,7 @@ client.on('message', function(message) { //This command runs every time when a m
     if (!message.content.startsWith(prefix)) return;
     var args = message.content.substring(prefix.length).split(" ");
 
+    console.log("User " + sender.username + " with ID " + sender + " sent a command: " + msg + " with " + args.length + " argument(s): " + args + ".");
 
     if(!userData[sender.id]) userData[sender.id] = { //Checks if the writer has a profile.
       MessagesSent: 0, //Create a profile, with MessagesSent on 0.
@@ -109,6 +106,14 @@ client.on('message', function(message) { //This command runs every time when a m
 
     switch (args[0].toUpperCase()) { //Check if the given command is in the list somewhere.
 
+        default:
+        message.channel.send({embed: {
+                color: 0x00BCFF,
+                title: ":interrobang:",
+                description: "That command is invalid. Type /help for a list of commands.",
+                }});
+        break;
+
         case "CHANGELOG":
         message.channel.send({embed: {
                 color: 0x00BCFF,
@@ -119,21 +124,20 @@ client.on('message', function(message) { //This command runs every time when a m
                 title: "Changes in " + version,
                 fields: [{
                     name: "New Features",
-                    value: "Added a Changelog Command."
+                    value: "- Added a /hug command!\n- Added a /say command. It's disabled for now, though."
                   },
                   {
                     name: "Bug Fixes",
-                    value: "No Bug Fixes."
+                    value: "- Fixed some crashes."
                   },
                   {
                     name: "Improvements",
-                    value: "Made the Embed Messages nicer to the eyes."
+                    value: "- Added some more detail.\n- Made the bot smoother.\nMore Fortunes!\n- The bot can now actually rate 10/10.\n- Added command usages to the /help command.\n- Added a invalid command message.\n- Improved the /rate command."
                   },
               ],
               timestamp: new Date(),
               footer: {
-                icon_url: "https://cdn.discordapp.com/avatars/427214101589131264/5b95b5b151127cee95416d9827258337.png",
-                text: "Made by bluepai#9307"
+                text: "Made by bluepai#0001"
               }
             }});
         break;
@@ -149,7 +153,7 @@ client.on('message', function(message) { //This command runs every time when a m
                   },
                   {
                     name: "Fun Commands",
-                    value: "`/shop` Go to your local supermarket and buy stuff you'll never use\n`/8ball` ask the magic :8ball: a question.\n`/rate` Ask me to rate your stuff because why not"
+                    value: "`/shop` Go to your local supermarket and buy stuff you'll never use\n`/8ball <question>` ask the magic :8ball: a question.\n`/rate` Ask me to rate your stuff because why not\n`/hug <someone>` give your friends a nice hug~"
                   },
                   {
                     name: "Misc Commands",
@@ -157,8 +161,7 @@ client.on('message', function(message) { //This command runs every time when a m
                   },
               ],
               footer: {
-                icon_url: "https://cdn.discordapp.com/avatars/427214101589131264/5b95b5b151127cee95416d9827258337.png",
-                text: "Made by bluepai#9307"
+                text: "Made by bluepai#0001"
               }
             }});
         break;
@@ -167,13 +170,42 @@ client.on('message', function(message) { //This command runs every time when a m
         ///FUN COMMANDS//
         /////////////////
 
+        case "SAY":
+        if(args[1]) {
+          if((sender.id === "427214101589131264") || sender.id === "346045052600188929") {
+            const sayMessage = args.join(" ").substr(4); //it deletes the fucking say because its FUGLEYY
+            message.delete().catch(O_o=>{}); //it ignores error with a shook smiley thingy
+            message.channel.send(sayMessage); //and it says a message. yes
+          }
+        }
+        break;
+
+        case "HUG":
+          if(args[1]) {
+              message.channel.send("Aww! :heart:\n" + sender + " hugged " + args[1] + "!", {
+              files: [
+                "./Storage/gifs/hug/" + (Math.floor(Math.random() * 10)) + ".gif"
+              ]
+            });
+           }
+        break;
+
         case "RATE":
           if(args[1]) {
-            message.channel.send({embed: {
-                    color: 0x00BCFF,
-                    title: "Hm...",
-                    description: "I rate it a " + (Math.floor(Math.random() * 10)) + "/10!",
-                    }});
+            if((args[1] === "blu") || args[1] === "myon" || args[1] === "gyaru" || args[1] === "blu x myon" || args[1] === "blu x gyaru") {
+              message.channel.send({embed: {
+                      color: 0x00BCFF,
+                      title: "Hm...",
+                      description: "I rate it a :fire:/10!",
+                      }});
+            }
+            else {
+              message.channel.send({embed: {
+                      color: 0x00BCFF,
+                      title: "Hm...",
+                      description: "I rate it a " + (Math.floor(Math.random() * 10)) + "/10!",
+                      }});
+            }
           }
           else {
             message.channel.send("I dont have anything to rate for you. Try '/rate me'!");
@@ -208,8 +240,7 @@ client.on('message', function(message) { //This command runs every time when a m
             ],
             timestamp: new Date(),
             footer: {
-              icon_url: "https://cdn.discordapp.com/avatars/427214101589131264/5b95b5b151127cee95416d9827258337.png",
-              text: "Made by bluepai#9307"
+              text: "Made by bluepai#0001"
             }
             }});
             break;
